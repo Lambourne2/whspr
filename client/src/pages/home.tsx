@@ -9,6 +9,8 @@ import { MoodTag } from "@/components/ui/mood-tag";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import type { Track } from "@shared/schema";
 
+import whspr_white__1_ from "@assets/whspr_white (1).png";
+
 export default function Home() {
   const { user, isLoading, isAuthenticated } = useAuth();
   const { toast } = useToast();
@@ -48,7 +50,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-dark-400 via-dark-300 to-dark-500">
-      
       {/* Navigation */}
       <nav className="sticky top-0 z-40 backdrop-blur-md bg-white/5 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +57,7 @@ export default function Home() {
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 flex items-center justify-center">
                 <img 
-                  src="@assets/whspr_transparent_1751414780982.png" 
+                  src={whspr_white__1_} 
                   alt="Whspr Logo" 
                   className="w-5 h-5"
                 />
@@ -79,7 +80,6 @@ export default function Home() {
           </div>
         </div>
       </nav>
-
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         
