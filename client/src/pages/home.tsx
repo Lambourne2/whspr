@@ -86,7 +86,7 @@ export default function Home() {
         {/* Hero Section */}
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-4xl font-bold mb-4 text-white">Create Your Perfect</h2>
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent mb-6">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text mb-6 text-[#ffffff]">
             Sleep Experience
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
