@@ -5,6 +5,8 @@ import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 
 import whspr_white from "@assets/whspr_white.png";
 
+import whspr_white__1_ from "@assets/whspr_white (1).png";
+
 export default function Landing() {
   const [isLogin, setIsLogin] = useState(true);
 
@@ -16,7 +18,7 @@ export default function Landing() {
         <div className="text-center mb-8 animate-fade-in">
           <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 flex items-center justify-center shadow-2xl">
             <img 
-              src={whspr_white} 
+              src={whspr_white__1_} 
               alt="Whspr Logo" 
               className="w-12 h-12"
             />
