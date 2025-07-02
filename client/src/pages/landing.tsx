@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 
+import whspr_white from "@assets/whspr_white.png";
+
 export default function Landing() {
   const [isLogin, setIsLogin] = useState(true);
 
@@ -14,7 +16,7 @@ export default function Landing() {
         <div className="text-center mb-8 animate-fade-in">
           <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 flex items-center justify-center shadow-2xl">
             <img 
-              src="@assets/whspr_transparent_1751414780982.png" 
+              src={whspr_white} 
               alt="Whspr Logo" 
               className="w-12 h-12"
             />
