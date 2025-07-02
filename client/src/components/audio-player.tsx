@@ -5,6 +5,8 @@ import { Slider } from "@/components/ui/slider";
 import { useAudio } from "@/hooks/useAudio";
 import { Track } from "@shared/schema";
 
+import whspr_white__1_ from "@assets/whspr_white (1).png";
+
 interface AudioPlayerProps {
   track: Track;
   onClose: () => void;
@@ -72,7 +74,7 @@ export function AudioPlayer({ track, onClose }: AudioPlayerProps) {
             <div className="relative z-10 text-center">
               <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 flex items-center justify-center">
                 <img 
-                  src="@assets/whspr_transparent_1751414780982.png" 
+                  src={whspr_white__1_} 
                   alt="Whspr Logo" 
                   className="w-16 h-16"
                 />
