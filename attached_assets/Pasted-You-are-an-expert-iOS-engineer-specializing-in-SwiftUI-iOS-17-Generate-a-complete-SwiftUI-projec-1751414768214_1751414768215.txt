@@ -1,0 +1,44 @@
+You are an expert iOS engineer specializing in SwiftUI (iOS 17+). Generate a complete SwiftUI project for a dark-themed (purple accent) sleep-music app with custom subliminal messaging and affirmations. The project should use MVVM, follow Apple’s Human Interface Guidelines, and integrate with a simple REST backend. Include placeholder assets where needed.
+
+Features:
+
+1. Launch & Branding  
+   • Dark theme with purple accent throughout.  
+   • Placeholder logo on launch screen and in the navigation bar.  
+
+2. Authentication Flow  
+   • Login/Register screen with email/password fields and Sign In/Register buttons.  
+   • Stubbed `AuthService` class that calls REST endpoints (`POST /login`, `/register`).  
+   • Minimal error alerts on auth failure.  
+
+3. Home Screen  
+   • Two large tappable cards: “Custom Meditation” and “Custom Sleep Track”.  
+   • Styled for iPhone (rounded corners, shadows); uses `NavigationLink` for navigation.  
+
+4. Metadata & Personalization Screen (single form)  
+   • Fields: Title (TextField), Description (TextEditor), Journal Prompt (TextEditor, 1–2 sentences),  
+     auto-generated predictive mood tags (chips), Duration slider (0–120m).  
+   • On form submit, call `POST /generateTags` with journal text to get tag suggestions, then `POST /generateTrack` with metadata to generate audio URL and affirmation script.  
+   • Minimal validation (required title), disable Submit until title is non-empty.  
+
+5. Playback Screen  
+   • Audio player controls: Play/Pause, Seek bar, elapsed/remaining time.  
+   • Every 30 seconds, display the next affirmation text (fade/slide animation).  
+   • Pull audio from the URL returned by `/generateTrack`.  
+
+6. Networking & Services  
+   • `BackendService` for REST calls: `generateTags(journal:)`, `generateTrack(metadata:)`, `saveTrack(track:)`.  
+   • Use `URLSession` with basic decoding; map JSON responses to Swift models.  
+   • Minimal error handling: show a default `Alert` on any network failure.  
+
+7. Project Structure  
+   • Folders: Models, ViewModels, Views, Services, Resources.  
+   • `ContentView.swift` sets up a `NavigationStack` and injects environment objects (e.g. `AuthViewModel`).  
+   • Use `@StateObject` and `@Published` for state management.  
+
+8. Documentation & Comments  
+   • Include file headers with author/date.  
+   • Comment all view models and service methods.  
+   • README.md with setup: “Open in Xcode 15+, build target iOS 17, configure your backend base URL in `Constants.swift`.”
+
+Please output each Swift file (`*.swift`), the JSON models, and the README. At the end, include a brief “Implementation Notes” section explaining any non-obvious choices (e.g. 30s `Timer` for affirmations, REST endpoint assumptions).
