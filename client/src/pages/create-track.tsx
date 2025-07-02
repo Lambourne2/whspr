@@ -166,7 +166,7 @@ export default function CreateTrack() {
                         <FormControl>
                           <Input
                             placeholder="e.g., Peaceful Night Sleep"
-                            className="bg-dark-600 border-gray-700 text-white placeholder-gray-400 focus:ring-primary-500 focus:border-transparent"
+                            className="bg-white border-gray-700 text-black placeholder-gray-400 focus:ring-primary-500 focus:border-transparent"
                             {...field}
                           />
                         </FormControl>
@@ -185,7 +185,7 @@ export default function CreateTrack() {
                           <Textarea
                             rows={3}
                             placeholder="Describe what you want this track to help you achieve..."
-                            className="bg-dark-600 border-gray-700 text-white placeholder-gray-400 focus:ring-primary-500 focus:border-transparent resize-none"
+                            className="bg-white border-gray-700 text-black placeholder-gray-400 focus:ring-primary-500 focus:border-transparent resize-none"
                             {...field}
                           />
                         </FormControl>
@@ -213,7 +213,7 @@ export default function CreateTrack() {
                         <Textarea
                           rows={4}
                           placeholder="Write 1-2 sentences about your current mood, what's on your mind, or what you need right now..."
-                          className="bg-dark-600 border-gray-700 text-white placeholder-gray-400 focus:ring-primary-500 focus:border-transparent resize-none"
+                          className="bg-white border-gray-700 text-black placeholder-gray-400 focus:ring-primary-500 focus:border-transparent resize-none"
                           {...field}
                         />
                       </FormControl>
