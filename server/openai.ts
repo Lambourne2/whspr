@@ -92,9 +92,81 @@ export async function generateAudioDescription(
   duration: number,
   trackType: 'meditation' | 'sleep'
 ): Promise<string> {
-  // For now, return a placeholder audio URL
-  // In a real implementation, this would integrate with an audio generation service
+  // This function now returns a placeholder URL
+  // The actual music generation is handled by the streaming service
+  // which generates music segments on-demand during playback
   const baseUrl = process.env.AUDIO_BASE_URL || "https://example.com/audio";
   const trackId = `${trackType}_${Date.now()}`;
   return `${baseUrl}/${trackId}.mp3`;
+}
+
+export async function generateMusicPrompt(
+  title: string,
+  description: string,
+  moodTags: string[],
+  trackType: 'meditation' | 'sleep'
+): Promise<string> {
+  try {
+    const context = trackType === 'sleep' 
+      ? "sleep, relaxation, and peaceful rest"
+      : "meditation, mindfulness, and inner peace";
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "system",
+          content: `You are an expert in creating music prompts for AI music generation focused on ${context}. Generate a detailed, atmospheric prompt that describes the desired musical characteristics, instruments, mood, and ambience. The prompt should be suitable for generating calming, therapeutic music. Focus on specific instruments, textures, and environmental sounds that promote relaxation.`
+        },
+        {
+          role: "user",
+          content: `Create a music generation prompt for:
+Title: ${title}
+Description: ${description}
+Mood Tags: ${moodTags.join(', ')}
+Type: ${trackType}
+
+The prompt should describe the musical style, instruments, tempo, and atmosphere in detail.`
+        }
+      ],
+      response_format: { type: "json_object" },
+    });
+
+    const result = JSON.parse(response.choices[0].message.content!);
+    return result.prompt || generateFallbackMusicPrompt(moodTags, trackType);
+  } catch (error) {
+    console.error("Failed to generate music prompt:", error);
+    return generateFallbackMusicPrompt(moodTags, trackType);
+  }
+}
+
+function generateFallbackMusicPrompt(moodTags: string[], trackType: 'meditation' | 'sleep'): string {
+  const basePrompts = {
+    sleep: [
+      "Ambient sleep soundscape with soft piano and gentle rain",
+      "Meditative drone with nature sounds and subtle harmonies",
+      "Soft acoustic guitar with ocean waves and wind chimes",
+      "Ethereal pad sounds with distant thunder and forest ambience"
+    ],
+    meditation: [
+      "Mindful meditation soundscape with singing bowls and gentle drones",
+      "Contemplative ambient music with soft bells and breathing rhythms",
+      "Zen garden atmosphere with water features and subtle chimes",
+      "Peaceful monastery ambience with distant chanting and nature sounds"
+    ]
+  };
+
+  const prompts = basePrompts[trackType];
+  let selectedPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+
+  // Add mood-specific adjustments
+  if (moodTags.includes('anxious') || moodTags.includes('stressed')) {
+    selectedPrompt += ", deeply calming and grounding";
+  } else if (moodTags.includes('sad')) {
+    selectedPrompt += ", comforting and nurturing";
+  } else if (moodTags.includes('restless')) {
+    selectedPrompt += ", settling and stabilizing";
+  }
+
+  return selectedPrompt;
 }
